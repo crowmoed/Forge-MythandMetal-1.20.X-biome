@@ -12,11 +12,14 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
+import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -26,11 +29,12 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegisterEvent;
 import net.minecraftforge.registries.RegistryObject;
 import net.pinto.mythandmetal.block.ModBlocks;
 import net.pinto.mythandmetal.item.ModCreativeModeTabs;
 import net.pinto.mythandmetal.item.ModItems;
-import net.pinto.mythandmetal.worldgen.ModConfigureFeatures;
+
 import net.pinto.mythandmetal.worldgen.biome.ModBiomes;
 import net.pinto.mythandmetal.worldgen.biome.ModOverworldRegion;
 import net.pinto.mythandmetal.worldgen.biome.ModTerrablender;
@@ -38,6 +42,8 @@ import net.pinto.mythandmetal.worldgen.biome.surface.ModSurfaceRules;
 import org.slf4j.Logger;
 import terrablender.api.Regions;
 import terrablender.api.SurfaceRuleManager;
+
+
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(MythandMetal.MOD_ID)
@@ -75,6 +81,8 @@ public class MythandMetal
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
         BLOCKS.register(modEventBus);
+
+
 
         ITEMS.register(modEventBus);
 
@@ -119,7 +127,6 @@ public class MythandMetal
         if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
             event.accept(ModBlocks.ENCHANTED_DIRT);
             event.accept(ModItems.EXPLOSIVESWORD);
-            event.accept(ModBlocks.ASH_SAPLING);
         }
     }
 

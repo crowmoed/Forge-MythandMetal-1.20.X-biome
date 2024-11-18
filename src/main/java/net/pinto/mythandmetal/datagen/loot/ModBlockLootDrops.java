@@ -16,7 +16,6 @@ public class ModBlockLootDrops extends BlockLootSubProvider {
 
     @Override
     protected void generate(){
-    this.dropSelf((ModBlocks.ASH_SAPLING.get()));
     this.dropSelf((ModBlocks.ENCHANTED_DIRT.get()));
 
 
