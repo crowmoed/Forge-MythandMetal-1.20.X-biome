@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "mythandmetal:block/ash_leaves"
+  }
+}

@@ -32,12 +32,12 @@ public class CustomTreeFeature {
     public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> context) {
 
         register(context, ASH_KEY, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
-                BlockStateProvider.simple(Blocks.OAK_LOG),
+                BlockStateProvider.simple(ModBlocks.ASH_LOG.get()),
                 new StraightTrunkPlacer(5, 4, 3)
                 ,
 
-                BlockStateProvider.simple(ModBlocks.ENCHANTED_DIRT.get()),
-                new BlobFoliagePlacer(ConstantInt.of(3), ConstantInt.of(2), 3),
+                BlockStateProvider.simple(ModBlocks.ASH_LEAVES.get()),
+                new BlobFoliagePlacer(ConstantInt.of(4), ConstantInt.of(2), 2),
 
                 new TwoLayersFeatureSize(1, 0, 2)).build());
     }

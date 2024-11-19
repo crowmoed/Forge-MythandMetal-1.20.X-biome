@@ -8,18 +8,21 @@ import net.minecraftforge.registries.RegistryObject;
 import net.pinto.mythandmetal.MythandMetal;
 import net.pinto.mythandmetal.item.customfun.ExplosiveSwordItem;
 
+import static net.minecraft.world.item.Rarity.EPIC;
+
 public class ModItems {
     public static final DeferredRegister<Item> ITEMS =
             DeferredRegister.create(ForgeRegistries.ITEMS, MythandMetal.MOD_ID);
 
 
 
+
+
+    public static final RegistryObject<Item> EXPLOSIVESWORD = ITEMS.register("explosive_sword",
+            ()-> new ExplosiveSwordItem(Tiers.IRON,0,2,new Item.Properties().durability(4)));
+
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);
     }
-
-    public static final RegistryObject<Item> EXPLOSIVESWORD = ITEMS.register("explosive_sword",
-            ()-> new ExplosiveSwordItem(Tiers.IRON,4,2,new Item.Properties().durability(4)));
-
 }
 

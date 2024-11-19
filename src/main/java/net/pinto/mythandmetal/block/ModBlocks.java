@@ -1,15 +1,17 @@
 package net.pinto.mythandmetal.block;
 
+import net.minecraft.client.resources.model.Material;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.SaplingBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.levelgen.feature.TreeFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
+import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
+import net.minecraftforge.client.model.obj.ObjMaterialLibrary;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -30,7 +32,16 @@ public class ModBlocks {
     public static final RegistryObject<Block> ENCHANTED_DIRT = registerBlock("enchanted_dirt",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.DIRT)));
 
-    // Register your custom sapling block
+    public static final RegistryObject<Block> ASH_GRASS = registerBlock("ash_grass",
+            () -> new GrassBlock(BlockBehaviour.Properties.copy(Blocks.GRASS_BLOCK)));
+
+    public static final RegistryObject<Block> ASH_LOG = registerBlock("ash_log",
+            () -> new RotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG)));
+    public static final RegistryObject<Block> ASH_LEAVES = registerBlock("ash_leaves",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)
+                    .pushReaction(PushReaction.NORMAL)
+                    .noOcclusion()
+                    .randomTicks()));
     public static final RegistryObject<Block> ASH_SAPLING = registerBlock("ash_sapling",
             () -> new SaplingBlock(new AshTreeGrower(), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
 

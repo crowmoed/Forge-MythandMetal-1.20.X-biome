@@ -10,8 +10,7 @@ public class ModSurfaceRules {
 
 
     private static final SurfaceRules.RuleSource DIRT = makeStateRule(Blocks.DIRT);
-    private static final SurfaceRules.RuleSource GRASS_BLOCK = makeStateRule(ModBlocks.ENCHANTED_DIRT.get());
-
+    private static final SurfaceRules.RuleSource GRASS_BLOCK = makeStateRule(ModBlocks.ASH_GRASS.get());
 
 
     public static SurfaceRules.RuleSource makeRules()
@@ -19,12 +18,14 @@ public class ModSurfaceRules {
         SurfaceRules.ConditionSource isAtOrAboveWaterLevel = SurfaceRules.waterBlockCheck(-1, 0);
         SurfaceRules.RuleSource grassSurface = SurfaceRules.sequence(SurfaceRules.ifTrue(isAtOrAboveWaterLevel, GRASS_BLOCK), DIRT);
 
+
         return SurfaceRules.sequence(
 
-                SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.ENCHANTED_FOREST), GRASS_BLOCK),
-
+                SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.ENCHANTED_FOREST),
+                    SurfaceRules.sequence(
                 SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR, grassSurface)
-        );
+                    )
+        ));
     }
 
 
