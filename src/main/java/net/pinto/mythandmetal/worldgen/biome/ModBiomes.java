@@ -11,6 +11,7 @@ import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.biome.*;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.pinto.mythandmetal.MythandMetal;
+import net.pinto.mythandmetal.worldgen.biome.surface.ModVegatationPlacements;
 
 public class ModBiomes {
     public  static final ResourceKey<Biome> ENCHANTED_FOREST = register("enchanted_forest");
@@ -47,9 +48,12 @@ public class ModBiomes {
         //we need to follow the same order as vanilla biomes for the BiomeDefaultFeatures
         globalOverworldGeneration(biomeBuilder);
         BiomeDefaultFeatures.addMossyStoneBlock(biomeBuilder);
+        BiomeDefaultFeatures.addForestFlowers(biomeBuilder);
+        BiomeDefaultFeatures.addFerns(biomeBuilder);
         BiomeDefaultFeatures.addDefaultOres(biomeBuilder);
         BiomeDefaultFeatures.addExtraGold(biomeBuilder);
 
+        biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModVegatationPlacements.ASH_TREES);
         biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VegetationPlacements.TREES_PLAINS);
 
         BiomeDefaultFeatures.addDefaultMushrooms(biomeBuilder);

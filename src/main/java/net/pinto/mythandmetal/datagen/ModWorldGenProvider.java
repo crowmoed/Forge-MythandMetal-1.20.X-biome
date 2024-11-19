@@ -9,6 +9,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.pinto.mythandmetal.MythandMetal;
 import net.pinto.mythandmetal.worldgen.CustomTreeFeature;
 import net.pinto.mythandmetal.worldgen.biome.ModBiomes;
+import net.pinto.mythandmetal.worldgen.biome.ModPlacedFeatures;
 
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
@@ -18,6 +19,7 @@ public class ModWorldGenProvider extends DatapackBuiltinEntriesProvider {
 
     public static final RegistrySetBuilder BUILDER = new RegistrySetBuilder()
             .add(Registries.BIOME, ModBiomes::bootstrap)
+            .add(Registries.PLACED_FEATURE, ModPlacedFeatures::bootstrap)
             .add(Registries.CONFIGURED_FEATURE, CustomTreeFeature::bootstrap);
 
     public ModWorldGenProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
