@@ -8,18 +8,18 @@
   },
   "downfall": 0.8,
   "effects": {
-    "fog_color": 0,
-    "foliage_color": 0,
-    "grass_color": 0,
+    "fog_color": 2269670,
+    "foliage_color": 13763580,
+    "grass_color": 8324092,
     "mood_sound": {
       "block_search_extent": 8,
       "offset": 2.0,
       "sound": "minecraft:ambient.cave",
       "tick_delay": 6000
     },
-    "sky_color": 0,
-    "water_color": 0,
-    "water_fog_color": 0
+    "sky_color": 3197208,
+    "water_color": 15216187,
+    "water_fog_color": 12524326
   },
   "features": [
     [],
@@ -71,9 +71,14 @@
       "minecraft:spring_lava"
     ],
     [
+      "minecraft:glow_lichen",
+      "minecraft:forest_flowers",
+      "minecraft:patch_large_fern",
       "mythandmetal:ash_placed",
       "minecraft:brown_mushroom_normal",
-      "minecraft:red_mushroom_normal", "minecraft:patch_pumpkin"
+      "minecraft:red_mushroom_normal",
+      "minecraft:patch_sugar_cane",
+      "minecraft:patch_pumpkin"
     ],
     [
       "minecraft:freeze_top_layer"
