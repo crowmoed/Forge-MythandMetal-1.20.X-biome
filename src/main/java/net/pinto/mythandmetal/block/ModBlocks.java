@@ -2,11 +2,13 @@ package net.pinto.mythandmetal.block;
 
 import net.minecraft.client.resources.model.Material;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.Registry;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.levelgen.feature.TreeFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.material.MapColor;
@@ -37,6 +39,7 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> ASH_LOG = registerBlock("ash_log",
             () -> new RotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG)));
+
     public static final RegistryObject<Block> ASH_LEAVES = registerBlock("ash_leaves",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)
                     .pushReaction(PushReaction.NORMAL)
@@ -58,5 +61,10 @@ public class ModBlocks {
 
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);
+    }
+    private static RotatedPillarBlock log(MapColor pTopMapColor, MapColor pSideMapColor) {
+        return new RotatedPillarBlock(BlockBehaviour.Properties.of().mapColor((p_152624_) -> {
+            return p_152624_.getValue(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? pTopMapColor : pSideMapColor;
+        }).instrument(NoteBlockInstrument.BASS).strength(2.0F).sound(SoundType.WOOD).ignitedByLava());
     }
 }

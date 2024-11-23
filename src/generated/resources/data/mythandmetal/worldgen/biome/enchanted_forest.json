@@ -71,11 +71,9 @@
       "minecraft:spring_lava"
     ],
     [
-      "minecraft:glow_lichen",
       "mythandmetal:ash_placed",
       "minecraft:brown_mushroom_normal",
-      "minecraft:red_mushroom_normal",
-      "minecraft:patch_pumpkin"
+      "minecraft:red_mushroom_normal", "minecraft:patch_pumpkin"
     ],
     [
       "minecraft:freeze_top_layer"

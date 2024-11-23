@@ -105,22 +105,18 @@ public class MythandMetal
     private void commonSetup(final FMLCommonSetupEvent event)
     {
         // Some common setup code
+
         event.enqueueWork(() ->
-                {
-                    Regions.register(new ModOverworldRegion(new ResourceLocation(MOD_ID,"overworld_1"),2));
+        {
+            Regions.register(new ModOverworldRegion(new ResourceLocation(MOD_ID,"enchanted_forest"),2));
 
-                    SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.OVERWORLD, MOD_ID, ModSurfaceRules.makeRules());
-                });
-
+            SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.OVERWORLD, MOD_ID, ModSurfaceRules.makeRules());
+        });
 
 
         LOGGER.info("HELLO FROM COMMON SETUP");
 
 
-            if (Config.logDirtBlock)
-            LOGGER.info("DIRT BLOCK >> {}", ForgeRegistries.BLOCKS.getKey(Blocks.DIRT));
-
-        LOGGER.info(Config.magicNumberIntroduction + Config.magicNumber);
 
         Config.items.forEach((item) -> LOGGER.info("ITEM >> {}", item.toString()));
     }
@@ -152,8 +148,6 @@ public class MythandMetal
         {
             // Some client setup code
             ItemBlockRenderTypes.setRenderLayer(ModBlocks.ASH_LEAVES.get(), RenderType.translucent());
-            LOGGER.info("HELLO FROM CLIENT SETUP");
-            LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
         }
     }
 }

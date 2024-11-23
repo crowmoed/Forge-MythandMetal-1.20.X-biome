@@ -24,6 +24,5 @@ public class DataGenerators {
         generator.addProvider(event.includeClient(), new ModelItemModelProvider(packOutput, existingFileHelper));
 
 
-
         generator.addProvider(event.includeServer(), new ModWorldGenProvider(packOutput, lookupProvider));
     }}

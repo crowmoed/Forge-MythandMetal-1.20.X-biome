@@ -11,7 +11,6 @@ import org.jetbrains.annotations.Nullable;
 public class AshTreeGrower extends AbstractTreeGrower {
     @Override
     protected @Nullable ResourceKey<ConfiguredFeature<?, ?>> getConfiguredFeature(RandomSource pRandom, boolean pHasFlowers) {
-        System.out.println("Killing myself one sec");
         return CustomTreeFeature.ASH_KEY;
     }
 }
