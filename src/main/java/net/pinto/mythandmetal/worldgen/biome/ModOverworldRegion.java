@@ -34,7 +34,7 @@ public class ModOverworldRegion extends Region {
                                 .erosion(Erosion.EROSION_0,Erosion.EROSION_1)
                                         .depth(Depth.SURFACE,Depth.FLOOR)
                                                 .weirdness(Weirdness.MID_SLICE_NORMAL_ASCENDING, Weirdness.MID_SLICE_NORMAL_DESCENDING)
-                                                        .build().forEach(point ->builder.add(point,ModBiomes.ENCHANTED_FOREST));
+                                                        .build().forEach(point ->builder.add(point,ModBiomes.ASH_FOREST));
         builder.build().forEach(mapper);
     }
 }

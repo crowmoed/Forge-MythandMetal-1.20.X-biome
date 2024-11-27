@@ -3,6 +3,7 @@ package net.pinto.mythandmetal.worldgen.biome;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BiomeDefaultFeatures;
 import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.data.worldgen.placement.MiscOverworldPlacements;
 import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -13,7 +14,7 @@ import net.minecraft.world.level.levelgen.GenerationStep;
 import net.pinto.mythandmetal.MythandMetal;
 
 public class ModBiomes {
-    public  static final ResourceKey<Biome> ENCHANTED_FOREST = register("enchanted_forest");
+    public  static final ResourceKey<Biome> ASH_FOREST = register("ash_forest");
 
 
     private static ResourceKey<Biome> register(String name)
@@ -22,7 +23,7 @@ public class ModBiomes {
     }
 
     public static void bootstrap(BootstapContext<Biome> context) {
-    context.register(ENCHANTED_FOREST, enchanted_forest(context));
+    context.register(ASH_FOREST, enchanted_forest(context));
     
     
     }
@@ -45,16 +46,15 @@ public class ModBiomes {
         BiomeGenerationSettings.Builder biomeBuilder =
                 new BiomeGenerationSettings.Builder(context.lookup(Registries.PLACED_FEATURE), context.lookup(Registries.CONFIGURED_CARVER));
         //we need to follow the same order as vanilla biomes for the BiomeDefaultFeatures
+
         globalOverworldGeneration(biomeBuilder);
-        BiomeDefaultFeatures.addMossyStoneBlock(biomeBuilder);
-        BiomeDefaultFeatures.addForestFlowers(biomeBuilder);
-        BiomeDefaultFeatures.addFerns(biomeBuilder);
         BiomeDefaultFeatures.addDefaultOres(biomeBuilder);
         BiomeDefaultFeatures.addExtraGold(biomeBuilder);
-
         biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.ASH_PLACED_KEY);
+        biomeBuilder.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, ModPlacedFeatures.MAGMA_ROCK);
         BiomeDefaultFeatures.addDefaultMushrooms(biomeBuilder);
         BiomeDefaultFeatures.addDefaultExtraVegetation(biomeBuilder);
+
 
         return new Biome.BiomeBuilder()
                 .hasPrecipitation(true)
@@ -63,12 +63,12 @@ public class ModBiomes {
                 .generationSettings(biomeBuilder.build())
                 .mobSpawnSettings(spawnBuilder.build())
                 .specialEffects((new BiomeSpecialEffects.Builder())
-                        .waterColor(0xe82e3b)
-                        .waterFogColor(0xbf1b26)
-                        .skyColor(0x30c918)
-                        .grassColorOverride(0x7f03fc)
-                        .foliageColorOverride(0xd203fc)
-                        .fogColor(0x22a1e6)
+                        .waterColor(0xBABABA)
+                        .waterFogColor(0xBABABA)
+                        .skyColor(0xBABABA)
+                        .grassColorOverride(0xBABABA)
+                        .foliageColorOverride(0xBABABA)
+                        .fogColor(0xBABABA)
                         .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
                         .build())
                 .build();

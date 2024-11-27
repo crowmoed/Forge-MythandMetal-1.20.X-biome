@@ -7,14 +7,20 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.data.worldgen.features.FeatureUtils;
+import net.minecraft.data.worldgen.features.MiscOverworldFeatures;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.configurations.BlockStateConfiguration;
 import net.minecraft.world.level.levelgen.placement.*;
 import net.pinto.mythandmetal.MythandMetal;
 import net.pinto.mythandmetal.block.ModBlocks;
@@ -26,35 +32,26 @@ public class ModPlacedFeatures {
 
 
     public static final ResourceKey<PlacedFeature> ASH_PLACED_KEY = registerKey("ash_placed");
-    public static final ResourceKey<PlacedFeature> ASH_TREES = PlacementUtils.createKey("ash_tree");
-    private static final PlacementModifier TREE_THRESHOLD = SurfaceWaterDepthFilter.forMaxDepth(0);
+    public static final ResourceKey<PlacedFeature> MAGMA_ROCK = registerKey("magma_rock");
+
+
+
+
 
     public static void bootstrap(BootstapContext<PlacedFeature> context) {
+        HolderGetter<ConfiguredFeature<?, ?>> holdergetter = context.lookup(Registries.CONFIGURED_FEATURE);
         HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
-
+        Holder<ConfiguredFeature<?, ?>> holder2 = holdergetter.getOrThrow(MiscOverworldFeatures.FOREST_ROCK);
 
         register(context, ASH_PLACED_KEY, configuredFeatures.getOrThrow(CustomTreeFeature.ASH_KEY),
                 VegetationPlacements.treePlacement(PlacementUtils.countExtra(3, 0.1f, 2),
                         ModBlocks.ASH_SAPLING.get()));
 
+        PlacementUtils.register(context, MAGMA_ROCK, holder2, CountPlacement.of(2), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome());
 
-        HolderGetter<ConfiguredFeature<?, ?>> holdergetter = context.lookup(Registries.CONFIGURED_FEATURE);
-        Holder<ConfiguredFeature<?, ?>> holder = holdergetter.getOrThrow(CustomTreeFeature.ASH_KEY);
-        PlacementModifier placementmodifier = SurfaceWaterDepthFilter.forMaxDepth(0);
-        PlacementUtils.register(context, ASH_TREES, holder, PlacementUtils.countExtra(0, 0.05F, 1), InSquarePlacement.spread(), placementmodifier,
-                PlacementUtils.HEIGHTMAP_OCEAN_FLOOR, BlockPredicateFilter.forPredicate(BlockPredicate.wouldSurvive(ModBlocks.ASH_SAPLING.get().defaultBlockState(), BlockPos.ZERO)), BiomeFilter.biome());
 
-    }
-    private static ImmutableList.Builder<PlacementModifier> treePlacementBase(PlacementModifier pPlacement) {
-        return ImmutableList.<PlacementModifier>builder().add(pPlacement).add(InSquarePlacement.spread()).add(TREE_THRESHOLD).add(PlacementUtils.HEIGHTMAP_OCEAN_FLOOR).add(BiomeFilter.biome());
-    }
 
-    public static List<PlacementModifier> treePlacement(PlacementModifier pPlacement) {
-        return treePlacementBase(pPlacement).build();
-    }
 
-    public static List<PlacementModifier> treePlacement(PlacementModifier pPlacement, Block pSaplingBlock) {
-        return treePlacementBase(pPlacement).add(BlockPredicateFilter.forPredicate(BlockPredicate.wouldSurvive(pSaplingBlock.defaultBlockState(), BlockPos.ZERO))).build();
     }
 
 

@@ -21,7 +21,7 @@ public class ModSurfaceRules {
 
         return SurfaceRules.sequence(
 
-                SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.ENCHANTED_FOREST),
+                SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.ASH_FOREST),
                     SurfaceRules.sequence(
                 SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR, grassSurface)
                     )

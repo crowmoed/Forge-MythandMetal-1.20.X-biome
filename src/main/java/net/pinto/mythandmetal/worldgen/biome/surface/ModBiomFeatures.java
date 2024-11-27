@@ -9,6 +9,6 @@ public class ModBiomFeatures {
 
 
     public static void addPlainVegetation(BiomeGenerationSettings.Builder pBuilder) {
-        pBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.ASH_TREES);
+        pBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.ASH_PLACED_KEY);
     }
 }

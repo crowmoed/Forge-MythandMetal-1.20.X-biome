@@ -27,7 +27,7 @@ import java.util.List;
 
 public class CustomTreeFeature {
 
-    public static final ResourceKey<ConfiguredFeature<?, ?>> ASH_KEY = registerKey("ash");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> ASH_KEY = registerKey("ash_tree");
 
     public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> context) {
 
