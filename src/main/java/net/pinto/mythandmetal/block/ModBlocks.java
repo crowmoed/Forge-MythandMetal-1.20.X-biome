@@ -39,20 +39,12 @@ public class ModBlocks {
             () -> new GrassBlock(BlockBehaviour.Properties.copy(Blocks.GRASS_BLOCK)));
 
     public static final RegistryObject<Block> ASH_LOG = registerBlock("ash_log",
-            () -> new RotatedPillarBlock(BlockBehaviour.Properties.of()
-                    .sound(SoundType.WOOD)));
+            () -> new RotatedPillarBlock(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2.0F)));
 
 
     public static final RegistryObject<Block> ASH_LEAVES = registerBlock("ash_leaves",
-            () -> new Block(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)
-                    .pushReaction(PushReaction.NORMAL)
-                    .noOcclusion()
-                    .randomTicks())
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES).mapColor(MapColor.PLANT).strength(0.2F).randomTicks().noOcclusion().ignitedByLava().pushReaction(PushReaction.DESTROY)));
 
-
-
-
-            );
     public static final RegistryObject<Block> ASH_SAPLING = registerBlock("ash_sapling",
             () -> new SaplingBlock(new AshTreeGrower(), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
 

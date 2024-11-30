@@ -108,7 +108,7 @@ public class MythandMetal
 
         event.enqueueWork(() ->
         {
-            Regions.register(new ModOverworldRegion(new ResourceLocation(MOD_ID,"enchanted_forest"),50));
+            Regions.register(new ModOverworldRegion(new ResourceLocation(MOD_ID,"enchanted_forest"),125));
 
             SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.OVERWORLD, MOD_ID, ModSurfaceRules.makeRules());
         });
@@ -147,7 +147,6 @@ public class MythandMetal
         public static void onClientSetup(FMLClientSetupEvent event)
         {
             // Some client setup code
-            ItemBlockRenderTypes.setRenderLayer(ModBlocks.ASH_LEAVES.get(), RenderType.translucent());
         }
     }
 }

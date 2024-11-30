@@ -8,6 +8,7 @@ import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.pinto.mythandmetal.MythandMetal;
+import net.pinto.mythandmetal.datagen.loot.ModBlockLootDrops;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -22,6 +23,7 @@ public class DataGenerators {
 
 
         generator.addProvider(event.includeClient(), new ModelItemModelProvider(packOutput, existingFileHelper));
+        generator.addProvider(event.includeServer(), ModLootTableProvider.create(packOutput));
 
 
         generator.addProvider(event.includeServer(), new ModWorldGenProvider(packOutput, lookupProvider));
