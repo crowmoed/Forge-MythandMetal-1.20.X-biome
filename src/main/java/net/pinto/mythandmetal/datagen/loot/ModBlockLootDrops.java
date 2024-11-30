@@ -3,6 +3,7 @@ package net.pinto.mythandmetal.datagen.loot;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.registries.RegistryObject;
 import net.pinto.mythandmetal.block.ModBlocks;
 import org.apache.commons.compress.compressors.lz77support.LZ77Compressor;
@@ -38,7 +39,8 @@ public class ModBlockLootDrops extends BlockLootSubProvider {
     protected void generate() {
 
         this.dropSelf(ModBlocks.ENCHANTED_DIRT.get());
-        this.dropSelf(ModBlocks.ASH_GRASS.get());
+        this.dropSelf(ModBlocks.ASH_SAPLING.get());
+        this.dropOther(ModBlocks.ASH_GRASS.get(), Blocks.DIRT);
         this.dropSelf(ModBlocks.ASH_LOG.get());
         this.add(ModBlocks.ASH_LEAVES.get(), block ->
                 createLeavesDrops(block, ModBlocks.ASH_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
@@ -46,13 +48,9 @@ public class ModBlockLootDrops extends BlockLootSubProvider {
 
     }
 
-    protected LootTable.Builder createCopperLikeOreDrops(Block pBlock, Item item) {
-        return createSilkTouchDispatchTable(pBlock,
-                this.applyExplosionDecay(pBlock,
-                        LootItem.lootTableItem(item)
-                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 5.0F)))
-                                .apply(ApplyBonusCount.addOreBonusCount(Enchantments.BLOCK_FORTUNE))));
-    }
+
+
+
 
     @Override
     protected Iterable<Block> getKnownBlocks() {
