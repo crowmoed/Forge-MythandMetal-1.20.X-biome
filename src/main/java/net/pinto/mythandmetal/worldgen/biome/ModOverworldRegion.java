@@ -28,9 +28,9 @@ public class ModOverworldRegion extends Region {
         VanillaParameterOverlayBuilder builder = new VanillaParameterOverlayBuilder();
 
         new ParameterPointListBuilder()
-                .temperature(Temperature.span(Temperature.COOL,Temperature.FROZEN))
+                .temperature(Temperature.span(Temperature.WARM,Temperature.HOT))
                 .humidity(Humidity.span(Humidity.ARID,Humidity.DRY))
-                        .continentalness(Continentalness.INLAND)
+                        .continentalness(Continentalness.FAR_INLAND)
                                 .erosion(Erosion.EROSION_0,Erosion.EROSION_1)
                                         .depth(Depth.SURFACE,Depth.FLOOR)
                                                 .weirdness(Weirdness.MID_SLICE_NORMAL_ASCENDING, Weirdness.MID_SLICE_NORMAL_DESCENDING)

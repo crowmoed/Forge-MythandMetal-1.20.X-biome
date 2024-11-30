@@ -108,7 +108,7 @@ public class MythandMetal
 
         event.enqueueWork(() ->
         {
-            Regions.register(new ModOverworldRegion(new ResourceLocation(MOD_ID,"enchanted_forest"),2));
+            Regions.register(new ModOverworldRegion(new ResourceLocation(MOD_ID,"enchanted_forest"),50));
 
             SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.OVERWORLD, MOD_ID, ModSurfaceRules.makeRules());
         });

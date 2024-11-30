@@ -13,6 +13,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.feature.BlockBlobFeature;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.LakeFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.BlockStateConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
@@ -30,10 +31,15 @@ public class ModConfiguredFeatures {
 public static final ResourceKey<ConfiguredFeature<?, ?>> MAGMA_ROCK = registerKey("magma_rock");
 
 public static final ResourceKey<ConfiguredFeature<?, ?>> ASH_KEY = registerKey("ash_tree");
+public static final ResourceKey<ConfiguredFeature<?, ?>> LAVA_ASH_KEY = registerKey("lake_ash");
+
 
 public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> context) {
 
     register(context, MAGMA_ROCK, Feature.FOREST_ROCK, new BlockStateConfiguration(Blocks.MAGMA_BLOCK.defaultBlockState()));
+
+
+    register(context, LAVA_ASH_KEY, Feature.LAKE, new LakeFeature.Configuration(BlockStateProvider.simple(Blocks.LAVA.defaultBlockState()), BlockStateProvider.simple(Blocks.NETHERRACK.defaultBlockState())));
 
     register(context, ASH_KEY, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
             BlockStateProvider.simple(ModBlocks.ASH_LOG.get()),

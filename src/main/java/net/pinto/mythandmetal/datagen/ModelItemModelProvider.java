@@ -20,7 +20,6 @@ public class ModelItemModelProvider extends ItemModelProvider {
 
 
 
-        handheldItem(ModItems.EXPLOSIVESWORD);
 
 
     }

@@ -6,8 +6,10 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.Registry;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.levelgen.feature.TreeFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
@@ -18,7 +20,6 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-import net.pinto.mythandmetal.worldgen.CustomTreeFeature;
 import net.pinto.mythandmetal.MythandMetal;
 import net.pinto.mythandmetal.item.ModItems;
 import net.pinto.mythandmetal.worldgen.tree.AshTreeGrower;
@@ -38,13 +39,20 @@ public class ModBlocks {
             () -> new GrassBlock(BlockBehaviour.Properties.copy(Blocks.GRASS_BLOCK)));
 
     public static final RegistryObject<Block> ASH_LOG = registerBlock("ash_log",
-            () -> new RotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG)));
+            () -> new RotatedPillarBlock(BlockBehaviour.Properties.of()
+                    .sound(SoundType.WOOD)));
+
 
     public static final RegistryObject<Block> ASH_LEAVES = registerBlock("ash_leaves",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)
                     .pushReaction(PushReaction.NORMAL)
                     .noOcclusion()
-                    .randomTicks()));
+                    .randomTicks())
+
+
+
+
+            );
     public static final RegistryObject<Block> ASH_SAPLING = registerBlock("ash_sapling",
             () -> new SaplingBlock(new AshTreeGrower(), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
 
@@ -54,6 +62,9 @@ public class ModBlocks {
         registerBlockItem(name, toReturn);
         return toReturn;
     }
+
+
+
 
     private static <T extends Block> RegistryObject<Item> registerBlockItem(String name, RegistryObject<T> block) {
         return ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));

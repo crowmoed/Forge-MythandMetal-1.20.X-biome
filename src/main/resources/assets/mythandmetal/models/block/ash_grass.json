@@ -6,6 +6,8 @@
     "east": "mythandmetal:block/ashgrass_side",
     "west": "mythandmetal:block/ashgrass_side",
     "up": "mythandmetal:block/ashgrass_top",
-    "down": "mythandmetal:block/ashgrass_bot"
+    "down": "mythandmetal:block/ashgrass_bot",
+    "particle": "mythandmetal:block/ashgrass_side"
+
   }
 }

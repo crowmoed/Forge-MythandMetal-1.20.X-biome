@@ -7,7 +7,6 @@ import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.data.DatapackBuiltinEntriesProvider;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.pinto.mythandmetal.MythandMetal;
-import net.pinto.mythandmetal.worldgen.CustomTreeFeature;
 import net.pinto.mythandmetal.worldgen.biome.ModBiomes;
 import net.pinto.mythandmetal.worldgen.biome.ModConfiguredFeatures;
 import net.pinto.mythandmetal.worldgen.biome.ModPlacedFeatures;

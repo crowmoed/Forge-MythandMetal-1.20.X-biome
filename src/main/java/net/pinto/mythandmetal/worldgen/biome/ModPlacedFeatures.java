@@ -24,7 +24,6 @@ import net.minecraft.world.level.levelgen.feature.configurations.BlockStateConfi
 import net.minecraft.world.level.levelgen.placement.*;
 import net.pinto.mythandmetal.MythandMetal;
 import net.pinto.mythandmetal.block.ModBlocks;
-import net.pinto.mythandmetal.worldgen.CustomTreeFeature;
 
 import java.util.List;
 
@@ -33,6 +32,8 @@ public class ModPlacedFeatures {
 
     public static final ResourceKey<PlacedFeature> ASH_PLACED_KEY = registerKey("ash_placed");
     public static final ResourceKey<PlacedFeature> MAGMA_ROCK = registerKey("magma_rock");
+    public static final ResourceKey<PlacedFeature> LAVA_ASH = registerKey("lava_ash");
+
 
 
 
@@ -41,10 +42,14 @@ public class ModPlacedFeatures {
     public static void bootstrap(BootstapContext<PlacedFeature> context) {
         HolderGetter<ConfiguredFeature<?, ?>> holdergetter = context.lookup(Registries.CONFIGURED_FEATURE);
         HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
-        Holder<ConfiguredFeature<?, ?>> holder2 = holdergetter.getOrThrow(MiscOverworldFeatures.FOREST_ROCK);
+        Holder<ConfiguredFeature<?, ?>> holder2 = holdergetter.getOrThrow(ModConfiguredFeatures.MAGMA_ROCK);
+        Holder<ConfiguredFeature<?, ?>> holder6 = holdergetter.getOrThrow(ModConfiguredFeatures.LAVA_ASH_KEY);
 
-        register(context, ASH_PLACED_KEY, configuredFeatures.getOrThrow(CustomTreeFeature.ASH_KEY),
-                VegetationPlacements.treePlacement(PlacementUtils.countExtra(3, 0.1f, 2),
+
+        PlacementUtils.register(context, LAVA_ASH, holder6, RarityFilter.onAverageOnceEvery(1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
+
+        register(context, ASH_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.ASH_KEY),
+                VegetationPlacements.treePlacement(PlacementUtils.countExtra(1, 0.1f, 2),
                         ModBlocks.ASH_SAPLING.get()));
 
         PlacementUtils.register(context, MAGMA_ROCK, holder2, CountPlacement.of(2), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome());

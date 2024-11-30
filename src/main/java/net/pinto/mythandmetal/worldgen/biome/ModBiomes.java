@@ -4,6 +4,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BiomeDefaultFeatures;
 import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.data.worldgen.placement.MiscOverworldPlacements;
+import net.minecraft.data.worldgen.placement.OrePlacements;
 import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -23,21 +24,19 @@ public class ModBiomes {
     }
 
     public static void bootstrap(BootstapContext<Biome> context) {
-    context.register(ASH_FOREST, enchanted_forest(context));
+    context.register(ASH_FOREST, ash_forest(context));
     
     
     }
-
+// builder.addFeature(GenerationStep.Decoration.FLUID_SPRINGS, MiscOverworldPlacements.SPRING_LAVA);
     public static void globalOverworldGeneration(BiomeGenerationSettings.Builder builder) {
-        BiomeDefaultFeatures.addDefaultCarversAndLakes(builder);
         BiomeDefaultFeatures.addDefaultCrystalFormations(builder);
         BiomeDefaultFeatures.addDefaultMonsterRoom(builder);
         BiomeDefaultFeatures.addDefaultUndergroundVariety(builder);
         BiomeDefaultFeatures.addDefaultSprings(builder);
-        BiomeDefaultFeatures.addSurfaceFreezing(builder);
     }
 
-    public static Biome enchanted_forest(BootstapContext<Biome> context) {
+    public static Biome ash_forest(BootstapContext<Biome> context) {
         MobSpawnSettings.Builder spawnBuilder = new MobSpawnSettings.Builder();
 
         BiomeDefaultFeatures.farmAnimals(spawnBuilder);
@@ -46,10 +45,11 @@ public class ModBiomes {
         BiomeGenerationSettings.Builder biomeBuilder =
                 new BiomeGenerationSettings.Builder(context.lookup(Registries.PLACED_FEATURE), context.lookup(Registries.CONFIGURED_CARVER));
         //we need to follow the same order as vanilla biomes for the BiomeDefaultFeatures
-
+        //        biomeBuilder.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, OrePlacements.ORE_COAL_LOWER);
+        biomeBuilder.addFeature(GenerationStep.Decoration.LAKES, MiscOverworldPlacements.LAKE_LAVA_SURFACE);
         globalOverworldGeneration(biomeBuilder);
         BiomeDefaultFeatures.addDefaultOres(biomeBuilder);
-        BiomeDefaultFeatures.addExtraGold(biomeBuilder);
+        biomeBuilder.addFeature(GenerationStep.Decoration.LAKES, ModPlacedFeatures.LAVA_ASH);
         biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.ASH_PLACED_KEY);
         biomeBuilder.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, ModPlacedFeatures.MAGMA_ROCK);
         BiomeDefaultFeatures.addDefaultMushrooms(biomeBuilder);
@@ -63,12 +63,12 @@ public class ModBiomes {
                 .generationSettings(biomeBuilder.build())
                 .mobSpawnSettings(spawnBuilder.build())
                 .specialEffects((new BiomeSpecialEffects.Builder())
-                        .waterColor(0xBABABA)
-                        .waterFogColor(0xBABABA)
-                        .skyColor(0xBABABA)
+                        .waterColor(0x00000)
+                        .waterFogColor(0x00000)
+                        .skyColor(0x00000)
                         .grassColorOverride(0xBABABA)
                         .foliageColorOverride(0xBABABA)
-                        .fogColor(0xBABABA)
+                        .fogColor(0x00000)
                         .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
                         .build())
                 .build();
