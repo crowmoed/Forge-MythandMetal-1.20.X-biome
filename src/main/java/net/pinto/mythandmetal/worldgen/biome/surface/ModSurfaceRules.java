@@ -24,7 +24,10 @@ public class ModSurfaceRules {
         return SurfaceRules.sequence(
 
                 SurfaceRules.ifTrue(SurfaceRules.isBiome(ModBiomes.ASH_FOREST),
-                        grassSurface
+                    SurfaceRules.sequence(
+                SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR, GRASS_BLOCK),
+                            SurfaceRules.ifTrue(SurfaceRules.UNDER_FLOOR, DIRT)
+                    )
         ));
     }
 
