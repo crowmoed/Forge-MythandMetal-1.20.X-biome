@@ -9,7 +9,7 @@ import net.pinto.mythandmetal.worldgen.biome.ModBiomes;
 public class ModSurfaceRules {
 
 
-    private static final SurfaceRules.RuleSource DIRT = makeStateRule(ModBlocks.ASH_GRASS.get());
+    private static final SurfaceRules.RuleSource DIRT = makeStateRule(ModBlocks.ASH_DIRT.get());
     private static final SurfaceRules.RuleSource GRASS_BLOCK = makeStateRule(ModBlocks.ASH_GRASS.get());
 
 

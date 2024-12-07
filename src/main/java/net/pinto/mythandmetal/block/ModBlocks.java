@@ -21,6 +21,8 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.pinto.mythandmetal.MythandMetal;
+import net.pinto.mythandmetal.block.custom.CustomDirtBlock;
+import net.pinto.mythandmetal.block.custom.CustomGrassBlock;
 import net.pinto.mythandmetal.item.ModItems;
 import net.pinto.mythandmetal.worldgen.tree.AshTreeGrower;
 
@@ -35,8 +37,11 @@ public class ModBlocks {
     public static final RegistryObject<Block> ENCHANTED_DIRT = registerBlock("enchanted_dirt",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.DIRT)));
 
+    public static final RegistryObject<Block> ASH_DIRT = registerBlock("ash_dirt",
+            () -> new CustomDirtBlock(BlockBehaviour.Properties.copy(Blocks.DIRT).randomTicks()));
+
     public static final RegistryObject<Block> ASH_GRASS = registerBlock("ash_grass",
-            () -> new GrassBlock(BlockBehaviour.Properties.copy(Blocks.GRASS_BLOCK)));
+            () -> new CustomGrassBlock(BlockBehaviour.Properties.copy(Blocks.GRASS_BLOCK)));
 
     public static final RegistryObject<Block> ASH_LOG = registerBlock("ash_log",
             () -> new RotatedPillarBlock(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2.0F)));

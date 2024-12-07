@@ -19,6 +19,7 @@ public class ModBlockLootDrops extends BlockLootSubProvider {
 
         this.dropSelf(ModBlocks.ENCHANTED_DIRT.get());
         this.dropSelf(ModBlocks.ASH_SAPLING.get());
+        this.dropSelf(ModBlocks.ASH_DIRT.get());
         this.dropOther(ModBlocks.ASH_GRASS.get(), Blocks.DIRT);
         this.dropSelf(ModBlocks.ASH_LOG.get());
         this.add(ModBlocks.ASH_LEAVES.get(), block ->
