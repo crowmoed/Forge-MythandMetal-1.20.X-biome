@@ -17,14 +17,21 @@ public class ModBlockLootDrops extends BlockLootSubProvider {
     @Override
     protected void generate() {
 
-        this.dropSelf(ModBlocks.ENCHANTED_DIRT.get());
+        this.dropSelf(ModBlocks.ENCHANTED_GRASS.get());
+        this.dropSelf(ModBlocks.ENCHANTED_LOG.get());
         this.dropSelf(ModBlocks.ASH_SAPLING.get());
         this.dropSelf(ModBlocks.ASH_DIRT.get());
         this.dropOther(ModBlocks.ASH_GRASS.get(), Blocks.DIRT);
         this.dropSelf(ModBlocks.ASH_LOG.get());
+
+        this.add(ModBlocks.ENCHANTED_LEAVES.get(), block ->
+                createLeavesDrops(block, ModBlocks.ASH_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
         this.add(ModBlocks.ASH_LEAVES.get(), block ->
                 createLeavesDrops(block, ModBlocks.ASH_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+
+
         this.dropSelf(ModBlocks.ASH_SAPLING.get());
+        this.dropSelf(ModBlocks.ENCHANTED_SAPLING.get());
 
     }
 

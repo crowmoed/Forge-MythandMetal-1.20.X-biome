@@ -25,6 +25,7 @@ import net.pinto.mythandmetal.block.custom.CustomDirtBlock;
 import net.pinto.mythandmetal.block.custom.CustomGrassBlock;
 import net.pinto.mythandmetal.item.ModItems;
 import net.pinto.mythandmetal.worldgen.tree.AshTreeGrower;
+import net.pinto.mythandmetal.worldgen.tree.EnchantedTreeGrower;
 
 import java.util.Random;
 import java.util.function.Supplier;
@@ -33,9 +34,7 @@ public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS =
             DeferredRegister.create(ForgeRegistries.BLOCKS, MythandMetal.MOD_ID);
 
-    // Register Enchanted Dirt (already present)
-    public static final RegistryObject<Block> ENCHANTED_DIRT = registerBlock("enchanted_dirt",
-            () -> new Block(BlockBehaviour.Properties.copy(Blocks.DIRT)));
+
 
     public static final RegistryObject<Block> ASH_DIRT = registerBlock("ash_dirt",
             () -> new CustomDirtBlock(BlockBehaviour.Properties.copy(Blocks.DIRT).randomTicks()));
@@ -43,17 +42,29 @@ public class ModBlocks {
     public static final RegistryObject<Block> ASH_GRASS = registerBlock("ash_grass",
             () -> new CustomGrassBlock(BlockBehaviour.Properties.copy(Blocks.GRASS_BLOCK)));
 
-    public static final RegistryObject<Block> ASH_LOG = registerBlock("ash_log",
-            () -> new RotatedPillarBlock(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2.0F)));
+    public static final RegistryObject<Block> ENCHANTED_GRASS = registerBlock("enchanted_grass",
+            () -> new CustomGrassBlock(BlockBehaviour.Properties.copy(Blocks.GRASS_BLOCK)));
 
+
+    public static final RegistryObject<Block> ASH_LOG = registerBlock("ash_log",
+            () -> new RotatedPillarBlock(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2.0F).lightLevel((state) -> 12)));
+
+    public static final RegistryObject<Block> ENCHANTED_LOG = registerBlock("enchanted_log",
+            () -> new RotatedPillarBlock(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2.0F)));
 
     public static final RegistryObject<Block> ASH_LEAVES = registerBlock("ash_leaves",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES).mapColor(MapColor.PLANT).strength(0.2F).randomTicks().noOcclusion().ignitedByLava().pushReaction(PushReaction.DESTROY)));
 
+    public static final RegistryObject<Block> ENCHANTED_LEAVES = registerBlock("enchanted_leaves",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES).mapColor(MapColor.PLANT).strength(0.2F).randomTicks().noOcclusion().ignitedByLava().pushReaction(PushReaction.DESTROY)));
+
+
+    public static final RegistryObject<Block> ENCHANTED_SAPLING = registerBlock("enchanted_sapling",
+            () -> new SaplingBlock(new EnchantedTreeGrower(), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
+
     public static final RegistryObject<Block> ASH_SAPLING = registerBlock("ash_sapling",
             () -> new SaplingBlock(new AshTreeGrower(), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
 
-    // Helper methods for registering blocks and items
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
         registerBlockItem(name, toReturn);

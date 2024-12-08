@@ -15,10 +15,10 @@ public class ModCreativeModeTabs {
             DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MythandMetal.MOD_ID);
 
     public static final RegistryObject<CreativeModeTab> MYTHANDMETALCRTAB = CREATIVE_MODE_TABS.register("mythandmetalcrtab",
-            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModBlocks.ENCHANTED_DIRT.get()))
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.EXPLOSIVESWORD.get()))
                     .title(Component.translatable("creativetab.mythandmetalcrtab"))
                     .displayItems((pParameters, pOutput) -> {
-                        pOutput.accept(ModBlocks.ENCHANTED_DIRT.get());
+
 
 
                     })

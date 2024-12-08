@@ -1,29 +1,20 @@
 package net.pinto.mythandmetal;
 
 import com.mojang.logging.LogUtils;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.ItemBlockRenderTypes;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.TagKey;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
-import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -33,15 +24,13 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegisterEvent;
 import net.minecraftforge.registries.RegistryObject;
 import net.pinto.mythandmetal.block.ModBlocks;
 import net.pinto.mythandmetal.item.ModCreativeModeTabs;
 import net.pinto.mythandmetal.item.ModItems;
 
-import net.pinto.mythandmetal.worldgen.biome.ModBiomes;
-import net.pinto.mythandmetal.worldgen.biome.ModOverworldRegion;
-import net.pinto.mythandmetal.worldgen.biome.ModTerrablender;
+import net.pinto.mythandmetal.worldgen.biome.modoverworldregion.ashOverworldRegion;
+import net.pinto.mythandmetal.worldgen.biome.modoverworldregion.enchantedOverworldRegion;
 import net.pinto.mythandmetal.worldgen.biome.surface.ModSurfaceRules;
 import org.slf4j.Logger;
 import terrablender.api.Regions;
@@ -84,19 +73,18 @@ public class MythandMetal
         modEventBus.addListener(this::commonSetup);
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+
         BLOCKS.register(modEventBus);
-
-
-
         ITEMS.register(modEventBus);
-
         CREATIVE_MODE_TABS.register(modEventBus);
-        ModTerrablender.registerBiomes();
+
+
 
         MinecraftForge.EVENT_BUS.register(this);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
+        modEventBus.addListener(this::commonSetup);
 
         // Register our mod's ForgeConfigSpec so that Forge can create and load the config file for us
         context.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
@@ -106,13 +94,16 @@ public class MythandMetal
     {
         // Some common setup code
 
+
         event.enqueueWork(() ->
         {
-            Regions.register(new ModOverworldRegion(new ResourceLocation(MOD_ID,"enchanted_forest"),500000000));
+
+            Regions.register(new ashOverworldRegion(new ResourceLocation(MOD_ID,"overworld_1"),50));
+
+            Regions.register(new enchantedOverworldRegion(new ResourceLocation(MOD_ID,"overworld_2"),50));
 
             SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.OVERWORLD, MOD_ID, ModSurfaceRules.makeRules());
         });
-
 
         LOGGER.info("HELLO FROM COMMON SETUP");
 
@@ -126,7 +117,6 @@ public class MythandMetal
     private void addCreative(BuildCreativeModeTabContentsEvent event)
     {
         if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
-            event.accept(ModBlocks.ENCHANTED_DIRT);
             event.accept(ModItems.EXPLOSIVESWORD);
         }
     }

@@ -31,6 +31,7 @@ public class ModPlacedFeatures {
 
 
     public static final ResourceKey<PlacedFeature> ASH_PLACED_KEY = registerKey("ash_placed");
+    public static final ResourceKey<PlacedFeature> ENCHANTED_PLACED_KEY = registerKey("enchanted_placed");
     public static final ResourceKey<PlacedFeature> MAGMA_ROCK = registerKey("magma_rock");
     public static final ResourceKey<PlacedFeature> LAVA_ASH = registerKey("lava_ash");
 
@@ -51,6 +52,10 @@ public class ModPlacedFeatures {
         register(context, ASH_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.ASH_KEY),
                 VegetationPlacements.treePlacement(PlacementUtils.countExtra(1, 0.1f, 2),
                         ModBlocks.ASH_SAPLING.get()));
+
+        register(context, ENCHANTED_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.ENCHANTED_KEY),
+                VegetationPlacements.treePlacement(PlacementUtils.countExtra(1, 0.1f, 2),
+                        ModBlocks.ENCHANTED_SAPLING.get()));
 
         PlacementUtils.register(context, MAGMA_ROCK, holder2, CountPlacement.of(2), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome());
 

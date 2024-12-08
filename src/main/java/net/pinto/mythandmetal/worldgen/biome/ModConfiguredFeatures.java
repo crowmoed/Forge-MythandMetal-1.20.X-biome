@@ -29,8 +29,8 @@ import net.pinto.mythandmetal.block.ModBlocks;
 public class ModConfiguredFeatures {
 
 public static final ResourceKey<ConfiguredFeature<?, ?>> MAGMA_ROCK = registerKey("magma_rock");
-
 public static final ResourceKey<ConfiguredFeature<?, ?>> ASH_KEY = registerKey("ash_tree");
+public static final ResourceKey<ConfiguredFeature<?, ?>> ENCHANTED_KEY = registerKey("enchanted_tree");
 public static final ResourceKey<ConfiguredFeature<?, ?>> LAVA_ASH_KEY = registerKey("lake_ash");
 
 
@@ -47,6 +47,16 @@ public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> context) {
             ,
 
             BlockStateProvider.simple(ModBlocks.ASH_LEAVES.get()),
+            new BlobFoliagePlacer(ConstantInt.of(4), ConstantInt.of(2), 2),
+
+            new TwoLayersFeatureSize(1, 0, 2)).build());
+
+    register(context, ENCHANTED_KEY, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
+            BlockStateProvider.simple(ModBlocks.ENCHANTED_LOG.get()),
+            new StraightTrunkPlacer(5, 4, 3)
+            ,
+
+            BlockStateProvider.simple(ModBlocks.ENCHANTED_LEAVES.get()),
             new BlobFoliagePlacer(ConstantInt.of(4), ConstantInt.of(2), 2),
 
             new TwoLayersFeatureSize(1, 0, 2)).build());
